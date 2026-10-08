@@ -1,6 +1,6 @@
 # Professional Redesign
 
-Full-site visual redesign of `union-alpha/redesign` to make the site read as a polished, professional analytics-engineering portfolio rather than a personal blog. Shell-first: design tokens, typography and layout chrome are rebuilt before any page interior, so every later page inherits a correct system.
+Full-site visual redesign, executed on branch `spec/008-professional-redesign` (forked from `main`), to make the site read as a polished, professional analytics-engineering portfolio rather than a personal blog. Shell-first: design tokens, typography and layout chrome are rebuilt before any page interior, so every later page inherits a correct system.
 
 The single most damaging defect found is measured, not aesthetic: the existing accent `#14b8a6` renders at **2.49:1** against white — every teal link and label in light mode fails WCAG AA. The redesign fixes that first.
 
@@ -151,7 +151,7 @@ Function before theme. Tasks 1–2 rebuild the system before any page interior c
 | 9    | Brand assets: update `src/lib/og-brand.ts` `COLORS` to the new palette and re-render `public/og.png`; recolour `public/favicon.svg`; keep `WORDMARK` unchanged.                                                                                                                                                    | Run `bun build`; open `/og/<any-slug>.png` and `/og.png` — new neutral+teal palette, wordmark and title layout unchanged, no missing fonts. Favicon renders correctly on a light and dark browser tab.                                                                                                                      |        |
 | 10   | Polish & regression: delete `tailwind.config.mjs` and the two unused starter SVGs; migrate `ink-faintest` → `ink-faint` call sites and drop the alias; move markdown plugins to `unified({...})` to clear the deprecation warning; add `focus-visible` rings and a `prefers-reduced-motion` guard.                 | `bun build` completes with **no** deprecation warnings. Tabbing through every page shows a visible teal focus ring on all interactive elements. With reduced motion emulated, no transitions fire. No `ink-faintest` references remain.                                                                                     |        |
 
-Commit hashes are recorded after each task's human-approved commit (todo auto-updates the hash when asked to continue with the next task). One commit per task, local to `union-alpha/redesign` only — never pushed, never merged to `main`.
+Commit hashes are recorded after each task's human-approved commit (todo auto-updates the hash when asked to continue with the next task). One commit per task on `spec/008-professional-redesign` — never merged into `main`; the branch is delivered as a pull request against `main`.
 
 ### Task dependency order
 
