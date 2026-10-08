@@ -105,6 +105,11 @@
   --font-mono: "JetBrains Mono", monospace;
   /*--container-width: 1152px; /* 6xl */
   --container-width: 1024px; /* 4xl */
+  /* Gallery only. Three columns inside --container-width leave ~300px per
+     column once the 2rem gutters are taken, which crops every chart; 1280px
+     gives ~380px. No other page uses it, so the long-form measure and the rest
+     of the site stay on --container-width. */
+  --container-wide: 1280px;
   /* Reading measure for long-form MDX. 1ch is the advance of "0" in
      Merriweather, which is much wider than this face's average glyph, so the ch
      value reads higher than the character count it actually produces. Two
@@ -207,6 +212,14 @@ pre,
 
 .container-max {
   max-width: var(--container-width);
+  margin-inline: auto;
+}
+
+/* Same centring contract as .container-max, wider measure. Kept as a sibling
+   class rather than a max-w-* utility so the two content widths stay declared
+   side by side and neither can silently inherit Tailwind's own max-width scale. */
+.container-wide {
+  max-width: var(--container-wide);
   margin-inline: auto;
 }
 
