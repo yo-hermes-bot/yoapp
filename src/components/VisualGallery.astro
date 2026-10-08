@@ -23,11 +23,13 @@ const formatMonthYear = (iso?: string) => {
   return `${MONTHS[month - 1]} ${year}`;
 };
 
-const sortedVisualizations = [...visualizations].sort(
-  (a, b) => (b.date ?? "").localeCompare(a.date ?? ""),
+const sortedVisualizations = [...visualizations].sort((a, b) =>
+  (b.date ?? "").localeCompare(a.date ?? ""),
 );
 
-const uniqueTags = [...new Set(sortedVisualizations.flatMap((viz) => viz.tags))];
+const uniqueTags = [
+  ...new Set(sortedVisualizations.flatMap((viz) => viz.tags)),
+];
 
 const COLUMN_COUNT = 3;
 const vizColumns: { viz: (typeof visualizations)[number]; index: number }[][] =
