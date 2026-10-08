@@ -24,7 +24,7 @@ const posts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
         posts.map((post) => (
           <li class="border-b border-line pb-6 last:border-0">
             <a href={`/blog/${post.id}`} class="group block">
-              <h2 class="font-text text-2xl group-hover:text-accent transition-colors">
+              <h2 class="font-text text-h2 group-hover:text-accent transition-colors">
                 {post.data.title}
               </h2>
               <time

@@ -14,6 +14,12 @@ interface Props {
 
 <Layout {...Astro.props}>
   <main id="main-content" tabindex="-1" class="container-max px-4 py-12">
-    <slot />
+    <!-- Reading measure: --container-prose is ~72 characters in Merriweather,
+         so long-form MDX stops around 559px instead of running the full 1024px
+         grid. Header and body share the same column so the title and the first
+         paragraph start on one left edge. -->
+    <div class="container-prose">
+      <slot />
+    </div>
   </main>
 </Layout>
