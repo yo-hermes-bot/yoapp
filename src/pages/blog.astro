@@ -13,7 +13,11 @@ const posts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
   title="Writings"
   description="Writings on on-chain data, DeFi analytics, and prediction markets by maybeYonas."
 >
-  <main class="container-max px-4 py-12 font-text">
+  <main
+    id="main-content"
+    tabindex="-1"
+    class="container-max px-4 py-12 font-text"
+  >
     <PageTitle title="Writings" backHref="/" />
     <ul class="flex flex-col gap-6">
       {

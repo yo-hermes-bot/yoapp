@@ -92,6 +92,7 @@ html.font-bricolage {
 html {
   font-family: var(--font-text);
   font-weight: 300;
+  line-height: 1.65;
 }
 
 /*h1,
@@ -99,6 +100,44 @@ h2,
 h3,*/
 .font-title {
   font-family: var(--font-title);
+}
+
+/* Heading defaults. The --text-* scale tokens land in task 5; until then every
+   page inherits the strongest ink and a tighter leading than body copy. Font
+   family is deliberately NOT set here: the display face is opted into per
+   element (.font-title), and .prose inherits Merriweather for MDX headings —
+   typography sets heading size, weight and colour but never font-family. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-ink-strong);
+}
+
+/* Skip-link target: focused programmatically, not a keyboard stop. */
+#main-content:focus {
+  outline: none;
+}
+
+/* Grain — exactly one application for the whole site. Declared only under
+   .dark, so light mode never fetches /texture.png, and z-index -1 paints it
+   behind content instead of over it (the old overlay sat at z-index 0, on top
+   of prose, and was duplicated inside the navbar). */
+.dark body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("/texture.png");
+  background-repeat: repeat;
+  background-position: center top;
+  background-size: 192px;
+  opacity: 0.03;
 }
 
 code,

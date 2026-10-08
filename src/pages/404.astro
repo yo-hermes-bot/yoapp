@@ -7,7 +7,11 @@ import PageTitle from "../components/PageTitle.astro";
   title="404 — Page not found"
   description="The page you are looking for does not exist."
 >
-  <main class="container-max px-4 py-12 font-text">
+  <main
+    id="main-content"
+    tabindex="-1"
+    class="container-max px-4 py-12 font-text"
+  >
     <PageTitle title="404" />
     <p class="text-ink-muted">
       The page you are looking for doesn't exist or has moved.
