@@ -109,13 +109,14 @@
      bursts out of its own chrome — an earlier 1280px gallery did exactly that,
      256px proud of the navbar and footer framing it. */
   --container-width: 1024px; /* 4xl */
-  /* Reading measure for long-form MDX. 1ch is the advance of "0" in
-     Merriweather, which is much wider than this face's average glyph, so the ch
-     value reads higher than the character count it actually produces. Two
-     independent measurements of the face put the ratio at 1.15-1.31 chars per
-     ch; 57ch is the only value that lands inside the intended 65-75 character
-     window under both (75 and 66 chars), so it is the measure used here rather
-     than the nominal 68ch. It sits in :root rather than @theme because
+  /* Narrow measure for short intro copy only — the / landing hero's lede and the
+   404 explanation. Long-form posts deliberately do NOT use this: they run the
+   full --container-width column. 1ch is the advance of "0" in Merriweather,
+   which is much wider than this face's average glyph, so the ch value reads
+   higher than the character count it actually produces. Two independent
+   measurements of the face put the ratio at 1.15-1.31 chars per ch; 57ch is the
+   only value that lands inside the intended 65-75 character window under both
+   (75 and 66 chars). It sits in :root rather than @theme because
      .container-prose consumes it from plain CSS — a @theme variable that no
      utility references is tree-shaken away. */
   --container-prose: 57ch;
@@ -251,15 +252,11 @@ pre,
   margin-inline: auto;
 }
 
-/* Long-form column. Deliberately not the `max-w-prose` utility: Tailwind's own
-   theme already ships --max-width-prose: 65ch and owns that class name, so a
-   --container-prose token behind it would never be reached.
-
-   Left-aligned inside .container-max rather than centred in it. Centring put
-   the column ~206px in from the page edge, so a post's h1 and first line sat
-   206px right of the navbar wordmark and of every title on /blog — a visible
-   jump when moving from the index into a post. The measure is unchanged; only
-   the alignment is. */
+/* Narrow column for short intro copy. Deliberately not the `max-w-prose`
+   utility: Tailwind's own theme already ships --max-width-prose: 65ch and owns
+   that class name, so a --container-prose token behind it would never be
+   reached. Used by the / hero lede and the 404 explanation, NOT by blog posts
+   — those span the full --container-width. */
 .container-prose {
   max-width: var(--container-prose);
 }

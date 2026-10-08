@@ -127,8 +127,9 @@
   border-collapse: collapse;
 }
 
-/* Unchanged from before: cells never reflow, the card scrolls horizontally
-   instead. A prose column is ~560px and these tables are wider than that. */
+/* Cells never reflow; the card scrolls horizontally instead. Posts now run the
+   full --container-width column, so most of these tables fit without scrolling,
+   but the widest still exceed it and must not be allowed to widen the page. */
 .prose .table-wrap td,
 .prose .table-wrap th {
   white-space: nowrap;

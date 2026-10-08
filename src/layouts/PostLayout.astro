@@ -13,16 +13,16 @@ interface Props {
 ---
 
 <Layout {...Astro.props}>
+  <!-- Posts span the full --container-width column, the same measure every other
+       page uses, so a post's h1 and first paragraph start on exactly the edge
+       the navbar wordmark and the /blog index titles do.
+
+       The previous .container-prose wrapper capped the column at 57ch (~580px),
+       which is the classic comfortable reading measure but left roughly 400px of
+       the column empty beside every post. If that ever reads too wide again,
+       the dial-back is one max-width on .prose — do not reintroduce a second
+       width token for it. -->
   <main id="main-content" tabindex="-1" class="container-max px-4 py-12">
-    <!-- Reading measure: --container-prose is 57ch, which lands at roughly 66-75
-         characters of Merriweather depending on the weight rendered (see the
-         note on the token in global.css), so long-form MDX stops around 580px
-         instead of running the full 1024px grid. Left-aligned rather than
-         centred, so the title, the meta line and the first paragraph all start
-         on the page's left edge — the same edge as the navbar wordmark and the
-         /blog index titles. Header and body share the one column. -->
-    <div class="container-prose">
-      <slot />
-    </div>
+    <slot />
   </main>
 </Layout>
