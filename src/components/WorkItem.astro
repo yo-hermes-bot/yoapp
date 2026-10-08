@@ -57,11 +57,14 @@ const roleLabel = roleTypeLabels[roleType];
 const startYear = parseDate(start).getUTCFullYear();
 ---
 
-<!-- Three columns on every breakpoint: year gutter, spine, entry. The gutter
-     is narrow enough that the entry still gets a readable measure on a phone,
-     and the spine is what separates the rows — there is no per-row border. -->
+<!-- Three columns on every breakpoint: year gutter, spine, entry. The gutter is
+     3.75rem rather than the 2.75rem it started at, because it has to hold a
+     4-digit year at 13px JetBrains Mono (36.4px, counting the 0.1em tracking)
+     plus clearance from the spine dot — see .timeline-year. The entry still gets
+     a readable measure on a phone, and the spine is what separates the rows:
+     there is no per-row border. -->
 <article
-  class="timeline-row grid grid-cols-[2.75rem_1.25rem_minmax(0,1fr)] md:grid-cols-[3.5rem_1.5rem_minmax(0,1fr)]"
+  class="timeline-row grid grid-cols-[3.75rem_1.25rem_minmax(0,1fr)] md:grid-cols-[3.75rem_1.5rem_minmax(0,1fr)]"
 >
   <time class="timeline-year" datetime={start}>{startYear}</time>
   <div class="timeline-spine" aria-hidden="true"></div>
@@ -100,8 +103,19 @@ const startYear = parseDate(start).getUTCFullYear();
     --row-gap: 3.5rem;
   }
 
+  /* padding-right is load-bearing, not cosmetic. The spine's dot is centred on
+     the rule, so it hangs 0.3125rem (5px) to the left of that border, and its
+     3px surface ring reaches 8px. The year is right-aligned in a column whose
+     right edge *is* that border, so without padding the ring painted over the
+     final digit — one digit of 13px JetBrains Mono is only 7.8px wide, so the
+     last character was entirely swallowed.
+
+     1rem of padding puts 16px between the last digit and the border, clearing
+     the 8px ring by 8px, and the 3.75rem gutter keeps the full 36.4px of text
+     inside the column at every breakpoint. */
   .timeline-year {
     padding-top: calc(var(--axis) - 0.6rem);
+    padding-right: 1rem;
     font-family: var(--font-mono);
     font-size: var(--text-meta);
     line-height: var(--text-meta--line-height);
