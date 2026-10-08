@@ -104,12 +104,11 @@
   --font-text: "Merriweather", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   /*--container-width: 1152px; /* 6xl */
+  /* One container width for the whole site: navbar, every page and the footer
+     all frame content at this measure. A page that opts out of it visually
+     bursts out of its own chrome — an earlier 1280px gallery did exactly that,
+     256px proud of the navbar and footer framing it. */
   --container-width: 1024px; /* 4xl */
-  /* Gallery only. Three columns inside --container-width leave ~300px per
-     column once the 2rem gutters are taken, which crops every chart; 1280px
-     gives ~380px. No other page uses it, so the long-form measure and the rest
-     of the site stay on --container-width. */
-  --container-wide: 1280px;
   /* Reading measure for long-form MDX. 1ch is the advance of "0" in
      Merriweather, which is much wider than this face's average glyph, so the ch
      value reads higher than the character count it actually produces. Two
@@ -252,18 +251,15 @@ pre,
   margin-inline: auto;
 }
 
-/* Same centring contract as .container-max, wider measure. Kept as a sibling
-   class rather than a max-w-* utility so the two content widths stay declared
-   side by side and neither can silently inherit Tailwind's own max-width scale. */
-.container-wide {
-  max-width: var(--container-wide);
-  margin-inline: auto;
-}
-
 /* Long-form column. Deliberately not the `max-w-prose` utility: Tailwind's own
    theme already ships --max-width-prose: 65ch and owns that class name, so a
-   --container-prose token behind it would never be reached. */
+   --container-prose token behind it would never be reached.
+
+   Left-aligned inside .container-max rather than centred in it. Centring put
+   the column ~206px in from the page edge, so a post's h1 and first line sat
+   206px right of the navbar wordmark and of every title on /blog — a visible
+   jump when moving from the index into a post. The measure is unchanged; only
+   the alignment is. */
 .container-prose {
   max-width: var(--container-prose);
-  margin-inline: auto;
 }
