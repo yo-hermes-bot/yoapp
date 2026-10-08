@@ -30,9 +30,9 @@ const website = {
 ---
 
 <Layout structuredData={[person, website]}>
-  <main id="main-content" tabindex="-1" class="px-6 py-8 md:px-12 md:py-12">
-    <section class="container-max">
-      <Welcome />
-    </section>
+  <!-- Same container and gutters as the navbar, footer and every other page,
+       so the hero's left edge lines up with the wordmark above it. -->
+  <main id="main-content" tabindex="-1" class="container-max px-4 py-12">
+    <Welcome />
   </main>
 </Layout>
