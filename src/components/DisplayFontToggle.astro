@@ -1,0 +1,56 @@
+---
+
+---
+
+<button
+  data-display-font-toggle
+  type="button"
+  aria-label="Bricolage Grotesque display font"
+  aria-pressed="false"
+  class="p-2 rounded-full bg-control shadow-md text-warning hover:scale-110 transition-transform"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="text-ink"
+    aria-hidden="true"
+  >
+    <polyline points="4 7 4 4 20 4 20 7"></polyline>
+    <line x1="9" x2="15" y1="20" y2="20"></line>
+    <line x1="12" x2="12" y1="4" y2="20"></line>
+  </svg>
+</button>
+
+<script>
+  const html = document.documentElement;
+  const toggles = document.querySelectorAll("[data-display-font-toggle]");
+
+  const sync = () => {
+    const isBricolage = html.classList.contains("font-bricolage");
+    toggles.forEach((btn) =>
+      btn.setAttribute("aria-pressed", String(isBricolage)),
+    );
+  };
+
+  toggles.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      html.classList.toggle("font-bricolage");
+      localStorage.setItem(
+        "displayFont",
+        html.classList.contains("font-bricolage") ? "bricolage" : "f5.6",
+      );
+      sync();
+    });
+  });
+
+  // The blocking head script owns the initial class; mirror it into the
+  // button's pressed state once the DOM exists.
+  sync();
+</script>

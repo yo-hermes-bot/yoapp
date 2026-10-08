@@ -45,10 +45,9 @@
 
 <script>
   const html = document.documentElement;
-  const saved = localStorage.getItem("theme");
-  if (saved === "dark") html.classList.add("dark");
-  else if (saved === "light") html.classList.remove("dark");
 
+  // Initial .dark class is applied by the blocking script in BaseHead.astro,
+  // before first paint. This only handles the click.
   document.querySelectorAll("[data-dark-toggle]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const isDark = html.classList.toggle("dark");

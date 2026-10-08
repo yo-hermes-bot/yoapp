@@ -29,6 +29,25 @@ const imageURL = new URL(image, Astro.site);
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
+<script is:inline>
+  // Blocking, render-critical: must run before first paint or dark-mode users
+  // see a white flash. Applies both persisted classes to <html> up front.
+  (() => {
+    const root = document.documentElement;
+    const theme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    root.classList.toggle(
+      "dark",
+      theme === "dark" || (theme !== "light" && prefersDark),
+    );
+    root.classList.toggle(
+      "font-bricolage",
+      localStorage.getItem("displayFont") === "bricolage",
+    );
+  })();
+</script>
 <meta name="generator" content={Astro.generator} />
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
