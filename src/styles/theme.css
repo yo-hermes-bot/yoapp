@@ -12,8 +12,6 @@
   --color-ink: #18181b;
   --color-ink-muted: #52525b;
   --color-ink-faint: #68686f;
-  /* Temporary alias of --color-ink-faint; migrated and dropped in task 10. */
-  --color-ink-faintest: #68686f;
   --color-line: #e4e4e7;
   --color-line-strong: #d4d4d8;
   --color-accent: #0f766e;
@@ -34,8 +32,6 @@
   --color-ink: #e4e4e7;
   --color-ink-muted: #a1a1aa;
   --color-ink-faint: #94949d;
-  /* Temporary alias of --color-ink-faint; migrated and dropped in task 10. */
-  --color-ink-faintest: #94949d;
   --color-line: #2e2e34;
   --color-line-strong: #3f3f46;
   --color-accent: #2dd4bf;

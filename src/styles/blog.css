@@ -32,6 +32,25 @@
   --tw-prose-kbd-shadows: var(--color-line-strong);
 }
 
+/* Shiki dual theme. `markdown.shikiConfig` in astro.config.mjs selects
+   github-light / github-dark with `defaultColor: false`, so every token arrives
+   as a `--shiki-light` / `--shiki-dark` custom property and Shiki writes no
+   `color` or `background-color` inline at all — which is what finally lets
+   --tw-prose-pre-bg above reach the <pre> and put the block on surface-sunken
+   like the rest of the palette.
+
+   Two rules, because the theme is a class on <html> rather than a media query:
+   light is the default pair, `.dark` swaps it. `color` inherits from the <pre>
+   down to every token span, so it is set once on the <pre>; the var() fallback
+   keeps --tw-prose-pre-code as the ink for a <pre> that Shiki never touched. */
+.astro-code {
+  color: var(--shiki-light, var(--tw-prose-pre-code));
+}
+
+.dark .astro-code {
+  color: var(--shiki-dark, var(--tw-prose-pre-code));
+}
+
 /* Quotation carries on the accent rule rather than on a slant: Merriweather is
    loaded upright only (300/400/700/900), so the face's `italic` would be a
    synthetic oblique. */

@@ -83,15 +83,18 @@ const imageURL = new URL(image, Astro.site);
 />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
+<!-- Literal hex, not a token: a meta tag is read by the UA before any
+     stylesheet resolves, so there is no custom property to read here. Both
+     values are --color-surface for the theme they name. -->
 <meta
   name="theme-color"
   media="(prefers-color-scheme: light)"
-  content="#ffffff"
+  content="#fafafa"
 />
 <meta
   name="theme-color"
   media="(prefers-color-scheme: dark)"
-  content="#27272a"
+  content="#18181b"
 />
 <link
   rel="preload"

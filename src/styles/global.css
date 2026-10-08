@@ -187,6 +187,43 @@ h6 {
   outline: none;
 }
 
+/* One focus ring for the whole site. `:focus-visible` rather than `:focus` so
+   a pointer click never paints a ring while every Tab stop does — and so the
+   ring stays off elements that are only focused to absorb the skip link, which
+   the rule above silences. The colour is the accent token because teal is
+   functional-only in this palette and focus is the clearest functional use of
+   it. Offset rather than a box-shadow so nothing reflows when it appears.
+
+   The skip link is the one deliberate exception: it is painted on an accent
+   fill, so an accent ring on top of it would be invisible. It keeps its own
+   ink-strong ring, declared with its own chrome in Layout.astro. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Reduced motion. Transitions here are all short colour and border fades, but a
+   human who has asked the OS to cut motion should get none of them — including
+   the ones declared in component <style> blocks and in Tailwind utilities,
+   which is why this is a bare-element !important sweep rather than a per-rule
+   opt-out.
+
+   1ms rather than 0s: the site's own `transition` and `animation` shorthand
+   declarations stay in place and only their duration collapses, so anything
+   listening for transitionend / animationend still receives its event. The
+   finite iteration count matters for the same reason — an infinite animation
+   must not survive this guard as a busy loop. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Grain — exactly one application for the whole site. Declared only under
    .dark, so light mode never fetches /texture.png, and z-index -1 paints it
    behind content instead of over it (the old overlay sat at z-index 0, on top
